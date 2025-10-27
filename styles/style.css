@@ -1,0 +1,377 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic);
+@import url(https://fonts.googleapis.com/css2?family=Truculenta:opsz,wght@12..72,100..900&display=swap);
+
+
+body {
+    background: #ee9ca7;
+    margin: 0;
+}
+
+.down_icon {
+    -webkit-mask: url("/static/icons/angle-down.svg") no-repeat center center;
+    mask: url("/static/icons/angle-down.svg") no-repeat center center;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.name {
+    font-size: 34px;
+    font-weight: 600;
+}
+
+#cake {
+    display: block;
+    position: relative;
+    margin: -10em auto 0 auto;
+}
+
+/* ============================================== Candle
+      */
+
+.cake {
+    background: #ffffff;
+    border-radius: 10px;
+    position: absolute;
+    top: 382px;
+    left: 50%;
+    margin-left: -2.4px;
+    margin-top: -8.33333333px;
+    width: 5px;
+    height: 35px;
+    transform: translateY(-300px);
+    backface-visibility: hidden;
+    animation: in 500ms 6s ease-out forwards;
+}
+
+.cake:after,
+.cake:before {
+    background: rgba(255, 0, 0, 0.4);
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2.22222222px;
+}
+
+.cake:after {
+    top: 25%;
+    left: 0;
+}
+
+.cake:before {
+    top: 45%;
+    left: 0;
+}
+
+/* ============================================== Fire
+      */
+
+.fuego {
+    border-radius: 100%;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -2.6px;
+    width: 6.66666667px;
+    height: 18px;
+}
+
+.fuego:nth-child(1) {
+    animation: fuego 2s 6.5s infinite;
+}
+
+.fuego:nth-child(2) {
+    animation: fuego 1.5s 6.5s infinite;
+}
+
+.fuego:nth-child(3) {
+    animation: fuego 1s 6.5s infinite;
+}
+
+.fuego:nth-child(4) {
+    animation: fuego 0.5s 6.5s infinite;
+}
+
+.fuego:nth-child(5) {
+    animation: fuego 0.2s 6.5s infinite;
+}
+
+/* ============================================== Animation Fire
+      */
+
+@keyframes fuego {
+
+    0%,
+    100% {
+        background: rgba(254, 248, 97, 0.5);
+        box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        background: rgba(255, 50, 0, 0.1);
+        box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
+        transform: translateY(-20px) scale(0);
+    }
+}
+
+@keyframes in {
+    to {
+        transform: translateY(0);
+    }
+}
+
+.text {
+    color: #8b6a60;
+    font-family: 'Truculenta', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .name {
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+}
+
+body,
+html {
+    /* Xóa overflow: hidden; */
+    overflow-y: auto;
+    /* Cho phép scroll dọc */
+    scroll-behavior: smooth;
+    /* Hiệu ứng mượt */
+    width: 100%;
+    scrollbar-width: thin;
+    /* Hoặc 'none' để ẩn scrollbar */
+}
+
+.frame-1,
+.frame-2 {
+    min-height: 100vh;
+    /* Mỗi frame cao ít nhất bằng màn hình */
+}
+
+.frame-1 {
+    position: relative;
+    height: 115vh;
+}
+
+.scroll-down {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(105, 105, 105);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+
+    &:hover {
+        @apply bg-gray-700 cursor-pointer;
+    }
+
+
+
+    .down_icon {
+        display: block;
+        width: 24px;
+        height: 24px;
+        background-color: white;
+    }
+}
+
+.frame-2 {
+    @apply bg-black min-h-screen;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.paper-hint {
+    color: white;
+    font-family: 'Truculenta', sans-serif;
+    font-size: 20px;
+    margin-bottom: 48px;
+    animation: bounce 2s infinite;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.paper-hint.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.paper {
+    width: 600px;
+    max-width: 90%;
+    min-height: 400px;
+    background: linear-gradient(to bottom, #fefae9 0%, #f5f5dc 100%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.paper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    width: 2px;
+    height: 100%;
+    background: rgba(255, 182, 193, 0.3);
+}
+
+.paper-content {
+    @apply py-12 pr-9 pl-12;
+    position: relative;
+    z-index: 1;
+}
+
+.typed-text {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    line-height: 2;
+    color: #2c3e50;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    min-height: 300px;
+}
+
+.typed-text::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+    margin-left: 2px;
+}
+
+.typed-text.typing-done::after {
+    display: none;
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 90px;
+    left: 27%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: 'Truculenta', sans-serif;
+    font-size: 24px;
+    margin: 0;
+    animation: bounce 2s infinite;
+    opacity: 1;
+    transition: opacity 0.5s;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Ẩn hint khi scroll xuống */
+.scroll-hint.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+
+.heart-pin {
+    position: absolute;
+    top: -50px;
+    width: 120px;
+    height: 112px;
+    z-index: 10;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    animation: swing 3s ease-in-out infinite;
+}
+
+.heart-pin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* Hình trái tim bằng clip-path - scale lên 120px */
+    clip-path: path('M60,108 L12,60 Q0,48 0,30 Q0,12 12,6 Q24,0 36,6 Q48,12 60,24 Q72,12 84,6 Q96,0 108,6 Q120,12 120,30 Q120,48 108,60 Z');
+}
+
+.heart-pin-left {
+    left: 30px;
+    animation-delay: 0s;
+}
+
+.heart-pin-left::before {
+    background-image: url('/static/images/1.jpg');
+}
+
+.heart-pin-right {
+    right: 30px;
+    animation-delay: 0.5s;
+}
+
+.heart-pin-right::before {
+    background-image: url('/static/images/2.jpg');
+}
+
+@keyframes swing {
+
+    0%,
+    100% {
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
+}
+
+/* Hiệu ứng hover cho ghim */
+.heart-pin:hover {
+    animation-play-state: paused;
+    transform: scale(1.15) rotate(0deg);
+    transition: transform 0.3s ease;
+}

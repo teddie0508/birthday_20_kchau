@@ -1,9 +1,15 @@
 {
-  "name": "ktdt_html",
+  "name": "birthday_20_kchau",
+  "homepage": "https://teddie0508.github.io/birthday_20_kchau",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "css": "postcss styles/input.css -o static/css/main.css --watch"
+    "css": "postcss styles/style.css -o static/css/main.css --watch",
+    "dev": "concurrently \"npm run css\" \"vite\"",
+    "build": "postcss styles/style.css -o static/css/main.css && vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -17,13 +23,15 @@
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.2.0",
     "cssnano": "^7.0.7",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.3",
     "postcss-cli": "^11.0.1",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.1",
     "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vite": "^5.4.21"
   },
   "dependencies": {
     "swiper": "^12.0.3"
