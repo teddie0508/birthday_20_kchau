@@ -30,11 +30,13 @@ const paperHint = document.querySelector('.paper-hint');
 
 const birthdayMessage = `Chúc mừng sinh nhật tuổi 20 của bấy bi! 🎉
 
-Hôm nay là một ngày đặc biệt, đánh dấu thêm một tuổi mới trong cuộc đời của em. Chúc bạn luôn tràn đầy niềm vui, hạnh phúc và thành công.
+Hôm nay là một ngày đặc biệt, đánh dấu thêm một tuổi mới trong cuộc đời của em, đó còn là tuổi 20 - một độ tuổi mà mọi người cho rằng là tuổi mà người con gái xinh đẹp nhất.
 
-Mong rằng tuổi 20 của bạn sẽ là một năm đầy ắp những kỷ niệm đẹp, những trải nghiệm mới mẻ và những thành tựu rực rỡ.
+Tuổi 20 là cũng thời điểm để em bắt đầu khám phá bản thân và theo đuổi những ước mơ mà em nung nấu. Hy vọng rằng em sẽ luôn giữ được sự nhiệt huyết, đam mê và tinh thần lạc quan trong mọi thử thách mà cuộc sống mang đến.
 
-Chúc bạn luôn khỏe mạnh, may mắn và được bao quanh bởi tình yêu thương từ gia đình và bạn bè.
+Mong rằng tuổi 20 của em sẽ là một năm đầy ắp những kỷ niệm đẹp, những trải nghiệm mới mẻ và những thành tựu rực rỡ bên cạnh người mà em yêu thương (cụ thể là anh 😎).
+
+Chúc em luôn xinh đẹp, may mắn và được bao quanh bởi tình yêu thương từ gia đình và bạn bè, à và luôn iu anh nhé ❤️.
 
 Happy Birthday Châu thối! 🎂🎈
 
