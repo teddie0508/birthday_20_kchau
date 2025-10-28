@@ -8,8 +8,8 @@ body {
 }
 
 .down_icon {
-    -webkit-mask: url("/static/icons/angle-down.svg") no-repeat center center;
-    mask: url("/static/icons/angle-down.svg") no-repeat center center;
+    -webkit-mask: url("../static/icons/angle-down.svg") no-repeat center center;
+    mask: url("../static/icons/angle-down.svg") no-repeat center center;
     -webkit-mask-size: cover;
     mask-size: cover;
 }
@@ -389,7 +389,7 @@ html {
 }
 
 .heart-pin-left::before {
-    background-image: url('/static/images/1.jpg');
+    background-image: url('../static/images/1.jpg');
 }
 
 .heart-pin-right {
@@ -398,7 +398,7 @@ html {
 }
 
 .heart-pin-right::before {
-    background-image: url('/static/images/2.jpg');
+    background-image: url('../static/images/2.jpg');
 }
 
 @keyframes swing {
