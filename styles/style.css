@@ -202,7 +202,7 @@ html {
 }
 
 .paper-hint {
-    top: 15%;
+    top: 5%;
     color: white;
     font-family: 'Truculenta', sans-serif;
     font-size: 20px;
@@ -291,7 +291,7 @@ html {
 .scroll-hint {
     position: absolute;
     bottom: 90px;
-    left: 50%;
+    left: 58%;
     margin-left: -50%;
     /* Thay vì dùng transform translateX */
     color: white;
@@ -318,7 +318,7 @@ html {
 .frame_middle .scroll-hint-middle {
     position: absolute;
     bottom: 120px;
-    left: 50%;
+    left: 58%;
     color: #ff6b81;
     font-family: 'Truculenta', sans-serif;
     font-size: 24px;
@@ -456,6 +456,57 @@ html {
     top: 40%;
     left: 50%;
 
+}
+
+/* Ẩn controls và ngăn fullscreen cho video */
+.frame_middle .tenor-gif-embed,
+.frame_middle .gif-result {
+    pointer-events: none;
+    /* Ngăn click vào video */
+    -webkit-tap-highlight-color: transparent;
+    /* Xóa highlight khi tap trên iOS */
+}
+
+.frame_middle .tenor-gif-embed::-webkit-media-controls,
+.frame_middle .gif-result::-webkit-media-controls {
+    display: none !important;
+}
+
+.frame_middle .tenor-gif-embed::-webkit-media-controls-enclosure,
+.frame_middle .gif-result::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+.frame_middle .tenor-gif-embed::-webkit-media-controls-panel,
+.frame_middle .gif-result::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+.frame_middle .tenor-gif-embed::-webkit-media-controls-start-playback-button,
+.frame_middle .gif-result::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+/* Firefox */
+.frame_middle .tenor-gif-embed::-moz-media-controls,
+.frame_middle .gif-result::-moz-media-controls {
+    display: none !important;
+}
+
+/* Edge/IE */
+.frame_middle .tenor-gif-embed::-ms-media-controls,
+.frame_middle .gif-result::-ms-media-controls {
+    display: none !important;
+}
+
+/* Ngăn video tự động fullscreen trên mobile */
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+    display: none !important;
 }
 
 .frame_middle .tenor-gif-embed {
