@@ -291,7 +291,7 @@ html {
 .scroll-hint {
     position: absolute;
     bottom: 90px;
-    left: 50%;
+    left: 56%;
     margin-left: -50%;
     /* Thay vì dùng transform translateX */
     color: white;
@@ -318,7 +318,7 @@ html {
 .frame_middle .scroll-hint-middle {
     position: absolute;
     bottom: 120px;
-    left: 50%;
+    left: 56%;
     color: #ff6b81;
     font-family: 'Truculenta', sans-serif;
     font-size: 24px;
