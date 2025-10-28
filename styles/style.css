@@ -8,8 +8,8 @@ body {
 }
 
 .down_icon {
-    -webkit-mask: url("../static/icons/angle-down.svg") no-repeat center center;
-    mask: url("../static/icons/angle-down.svg") no-repeat center center;
+    -webkit-mask: url("../icons/angle-down.svg") no-repeat center center;
+    mask: url("../icons/angle-down.svg") no-repeat center center;
     -webkit-mask-size: cover;
     mask-size: cover;
 }
@@ -198,9 +198,11 @@ html {
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    position: relative;
 }
 
 .paper-hint {
+    top: 15%;
     color: white;
     font-family: 'Truculenta', sans-serif;
     font-size: 20px;
@@ -208,6 +210,9 @@ html {
     animation: bounce 2s infinite;
     opacity: 1;
     transition: opacity 0.5s;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .paper-hint.hidden {
@@ -215,15 +220,18 @@ html {
     pointer-events: none;
 }
 
+/* Sửa lại animation bounce để kết hợp cả translateX và translateY */
 @keyframes bounce {
 
     0%,
     100% {
-        transform: translateY(0);
+        transform: translate(-50%, 0);
+        /* Kết hợp translateX(-50%) và translateY(0) */
     }
 
     50% {
-        transform: translateY(-10px);
+        transform: translate(-50%, -10px);
+        /* Kết hợp translateX(-50%) và translateY(-10px) */
     }
 }
 
@@ -389,7 +397,7 @@ html {
 }
 
 .heart-pin-left::before {
-    background-image: url('../static/images/1.jpg');
+    background-image: url('../images/1.jpg');
 }
 
 .heart-pin-right {
@@ -398,7 +406,7 @@ html {
 }
 
 .heart-pin-right::before {
-    background-image: url('../static/images/2.jpg');
+    background-image: url('../images/2.jpg');
 }
 
 @keyframes swing {
