@@ -1,26 +1,27 @@
-// Smooth scroll khi click nút scroll-down
+// Smooth scroll từ frame-1 xuống frame_middle
 document.querySelector('.scroll-down').addEventListener('click', function () {
-    // Ẩn hint
     document.querySelector('.scroll-hint').classList.add('hidden');
 
-    // Scroll mượt đến frame-2
-    document.querySelector('.frame-2').scrollIntoView({
+    const frameMiddle = document.querySelector('.frame_middle');
+    const targetPosition = frameMiddle.offsetTop;
+
+    window.scrollTo({
+        top: targetPosition,
         behavior: 'smooth'
     });
 });
 
-// Hiện lại hint khi scroll về frame-1
-window.addEventListener('scroll', function () {
-    const scrollHint = document.querySelector('.scroll-hint');
-    const frame1Height = document.querySelector('.frame-1').offsetHeight;
-    const scrollPosition = window.pageYOffset;
+// Smooth scroll từ frame_middle xuống frame-2
+document.querySelector('.scroll-down-middle').addEventListener('click', function () {
+    document.querySelector('.scroll-hint-middle').classList.add('hidden');
 
-    // Nếu scroll về gần frame-1 (trong 80% chiều cao frame-1)
-    if (scrollPosition < frame1Height * 0.8) {
-        scrollHint.classList.remove('hidden');
-    } else {
-        scrollHint.classList.add('hidden');
-    }
+    const frame2 = document.querySelector('.frame-2');
+    const targetPosition = frame2.offsetTop;
+
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+    });
 });
 
 // Typing effect cho tờ giấy
@@ -74,3 +75,68 @@ function typeWriter(text, index) {
         typedText.classList.add('typing-done');
     }
 }
+
+
+
+
+
+// ...existing code...
+
+// Do You Love Me functionality
+const questionContainer = document.querySelector(".frame_middle .question-container");
+const resultContainer = document.querySelector(".frame_middle .result-container");
+const gifResult = document.querySelector(".frame_middle .gif-result");
+const heartLoader = document.querySelector(".frame_middle .cssload-main");
+const yesBtn = document.querySelector(".frame_middle .js-yes-btn");
+const noBtn = document.querySelector(".frame_middle .js-no-btn");
+
+// Function để di chuyển nút No
+function moveNoButton() {
+    const frameMiddle = document.querySelector('.frame_middle');
+    const padding = 60; // Khoảng cách an toàn từ viền (tăng lên nếu cần)
+
+    // Lấy kích thước thực của button
+    const buttonWidth = noBtn.offsetWidth;
+    const buttonHeight = noBtn.offsetHeight;
+
+    // Tính toán vùng an toàn
+    const maxX = frameMiddle.offsetWidth - buttonWidth - padding;
+    const maxY = frameMiddle.offsetHeight - buttonHeight - padding;
+    const minX = padding;
+    const minY = padding;
+
+    // Random trong vùng an toàn
+    const newX = Math.floor(Math.random() * (maxX - minX) + minX);
+    const newY = Math.floor(Math.random() * (maxY - minY) + minY);
+
+    noBtn.style.left = `${newX}px`;
+    noBtn.style.top = `${newY}px`;
+}
+
+// Kiểm tra thiết bị có hỗ trợ hover không
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+if (isTouchDevice) {
+    // Mobile: Di chuyển khi click
+    noBtn.addEventListener("click", (e) => {
+        e.preventDefault(); // Ngăn hành động mặc định
+        moveNoButton();
+    });
+} else {
+    // Desktop: Di chuyển khi hover
+    noBtn.addEventListener("mouseover", () => {
+        moveNoButton();
+    });
+}
+
+// Yes button functionality
+yesBtn.addEventListener("click", () => {
+    questionContainer.style.display = "none";
+    heartLoader.style.display = "inherit";
+
+    setTimeout(() => {
+        heartLoader.style.display = "none";
+        resultContainer.style.display = "inherit";
+        gifResult.play();
+    }, 3000);
+});
