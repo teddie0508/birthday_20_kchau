@@ -289,9 +289,9 @@ html {
 }
 
 .scroll-hint {
+    @apply left-1/2;
     position: absolute;
     bottom: 90px;
-    left: 56%;
     margin-left: -50%;
     /* Thay vì dùng transform translateX */
     color: white;
@@ -310,15 +310,15 @@ html {
 /* Scroll button cho frame_middle */
 .frame_middle .scroll-down-middle {
     position: absolute;
-    bottom: 40px;
+    bottom: 58px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .frame_middle .scroll-hint-middle {
+    @apply left-1/2 bottom-[150px] md:bottom-[120px];
     position: absolute;
-    bottom: 120px;
-    left: 56%;
+
     color: #ff6b81;
     font-family: 'Truculenta', sans-serif;
     font-size: 24px;
@@ -452,8 +452,9 @@ html {
 }
 
 .frame_middle .question-container {
+    @apply flex flex-col gap-3 justify-center;
     position: absolute;
-    top: 40%;
+    top: 33%;
     left: 50%;
 
 }
@@ -564,11 +565,21 @@ video::-webkit-media-controls-enclosure {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
+    /* Thêm để căn giữa nội dung */
 }
 
 .frame_middle .gif-result {
     border-radius: 10px;
     margin-bottom: 2rem;
+    display: block;
+    /* Thêm để video hiển thị như block element */
+    margin-left: auto;
+    /* Thêm để căn giữa */
+    margin-right: auto;
+    /* Thêm để căn giữa */
+    max-width: 90%;
+    /* Thêm để responsive trên mobile */
 }
 
 .frame_middle .result-container h2 {
@@ -695,4 +706,136 @@ video::-webkit-media-controls-enclosure {
         transform: translateX(-50%) scale(0.5);
         border-color: rgb(228, 228, 228);
     }
+}
+
+/* Welcome Dialog */
+.welcome-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.welcome-dialog.hidden {
+    display: none;
+}
+
+.dialog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.dialog-content {
+    position: relative;
+    z-index: 10000;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 50px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    width: 500px;
+    animation: slideIn 0.5s ease;
+}
+
+.dialog-content h2 {
+    color: white;
+    font-family: 'Truculenta', sans-serif;
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+}
+
+.dialog-content p {
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Truculenta', sans-serif;
+    font-size: 20px;
+    margin: 0 0 30px 0;
+    line-height: 1.6;
+}
+
+.dialog-btn {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-family: 'Truculenta', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: #f0f0f0;
+}
+
+.dialog-btn:active {
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .dialog-content {
+        padding: 30px 25px;
+        width: 85%;
+    }
+
+    .dialog-content h2 {
+        font-size: 24px;
+    }
+
+    .dialog-content p {
+        font-size: 16px;
+    }
+
+    .dialog-btn {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+}
+
+#dontYouDare {
+    @apply text-center text-lg text-nowrap font-semibold font-roboto;
+}
+
+#iKnowIt {
+    @apply font-roboto;
 }

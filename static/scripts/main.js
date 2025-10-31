@@ -1,25 +1,49 @@
+// Force scroll to top on page load/reload
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 0);
+});
+
+// Welcome Dialog - Phát nhạc khi nhấn button
+const welcomeDialog = document.getElementById('welcomeDialog');
+const agreeBtn = document.getElementById('agreeBtn');
+const audio = document.getElementById('bg-music');
+
+// Set volume mặc định
+audio.volume = 0.6;
+
+// Xử lý khi nhấn nút "Nhất trí" - Phát nhạc
+agreeBtn.addEventListener('click', () => {
+    // Ẩn dialog
+    welcomeDialog.classList.add('hidden');
+
+    // Phát nhạc
+    audio.play().then(() => {
+        console.log('Music started playing!');
+    }).catch(err => {
+        console.log('Audio play failed:', err);
+    });
+});
+
 // Smooth scroll từ frame-1 xuống frame_middle
 document.querySelector('.scroll-down').addEventListener('click', function () {
-    document.querySelector('.scroll-hint').classList.add('hidden');
-
-    const frameMiddle = document.querySelector('.frame_middle');
-    const targetPosition = frameMiddle.offsetTop;
-
-    window.scrollTo({
-        top: targetPosition,
+    document.querySelector('.frame_middle').scrollIntoView({
         behavior: 'smooth'
     });
 });
 
 // Smooth scroll từ frame_middle xuống frame-2
 document.querySelector('.scroll-down-middle').addEventListener('click', function () {
-    document.querySelector('.scroll-hint-middle').classList.add('hidden');
-
-    const frame2 = document.querySelector('.frame-2');
-    const targetPosition = frame2.offsetTop;
-
-    window.scrollTo({
-        top: targetPosition,
+    document.querySelector('.frame-2').scrollIntoView({
         behavior: 'smooth'
     });
 });
@@ -47,40 +71,21 @@ Nguyễn Minh Tiến ❤️`;
 let hasTyped = false;
 
 paper.addEventListener('click', function () {
-    if (hasTyped) return;
-
-    hasTyped = true;
-    paperHint.classList.add('hidden');
-    paper.style.cursor = 'default';
-
-    typeWriter(birthdayMessage, 0);
+    if (!hasTyped) {
+        paperHint.classList.add('hidden');
+        typeWriter(birthdayMessage, 0);
+        hasTyped = true;
+    }
 });
 
 function typeWriter(text, index) {
     if (index < text.length) {
-        const currentChar = text.charAt(index);
-        typedText.textContent += currentChar;
-
-        let speed;
-
-        // Nếu gặp ký tự xuống dòng
-        if (currentChar === '\n') {
-            speed = 700; // Nghỉ 0.7 giây (700ms) khi xuống dòng
-        } else {
-            speed = 70; // Tốc độ đánh máy bình thường
-        }
-
-        setTimeout(() => typeWriter(text, index + 1), speed);
+        typedText.textContent += text.charAt(index);
+        setTimeout(() => typeWriter(text, index + 1), 50);
     } else {
         typedText.classList.add('typing-done');
     }
 }
-
-
-
-
-
-// ...existing code...
 
 // Do You Love Me functionality
 const questionContainer = document.querySelector(".frame_middle .question-container");
@@ -89,54 +94,52 @@ const gifResult = document.querySelector(".frame_middle .gif-result");
 const heartLoader = document.querySelector(".frame_middle .cssload-main");
 const yesBtn = document.querySelector(".frame_middle .js-yes-btn");
 const noBtn = document.querySelector(".frame_middle .js-no-btn");
+const dontYouDare = document.getElementById('dontYouDare');
+
+// Đếm số lần nhấn nút "Khum"
+let noClickCount = 0;
 
 // Function để di chuyển nút No
 function moveNoButton() {
-    const frameMiddle = document.querySelector('.frame_middle');
-    const padding = 60; // Khoảng cách an toàn từ viền (tăng lên nếu cần)
+    const container = document.querySelector(".frame_middle");
+    const containerRect = container.getBoundingClientRect();
 
-    // Lấy kích thước thực của button
-    const buttonWidth = noBtn.offsetWidth;
-    const buttonHeight = noBtn.offsetHeight;
+    const maxX = containerRect.width - noBtn.offsetWidth - 40;
+    const maxY = containerRect.height - noBtn.offsetHeight - 40;
 
-    // Tính toán vùng an toàn
-    const maxX = frameMiddle.offsetWidth - buttonWidth - padding;
-    const maxY = frameMiddle.offsetHeight - buttonHeight - padding;
-    const minX = padding;
-    const minY = padding;
+    const randomX = Math.floor(Math.random() * maxX) + 20;
+    const randomY = Math.floor(Math.random() * maxY) + 20;
 
-    // Random trong vùng an toàn
-    const newX = Math.floor(Math.random() * (maxX - minX) + minX);
-    const newY = Math.floor(Math.random() * (maxY - minY) + minY);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = randomX + 'px';
+    noBtn.style.top = randomY + 'px';
 
-    noBtn.style.left = `${newX}px`;
-    noBtn.style.top = `${newY}px`;
+    // Tăng số lần click và đổi text sau 3 lần
+    noClickCount++;
+    if (noClickCount >= 3) {
+        dontYouDare.textContent = 'Bỏ cuộc và ấn nút Có đi đồ lì lợm 😒';
+    }
 }
 
 // Kiểm tra thiết bị có hỗ trợ hover không
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
 if (isTouchDevice) {
-    // Mobile: Di chuyển khi click
-    noBtn.addEventListener("click", (e) => {
-        e.preventDefault(); // Ngăn hành động mặc định
+    noBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
         moveNoButton();
     });
 } else {
-    // Desktop: Di chuyển khi hover
-    noBtn.addEventListener("mouseover", () => {
-        moveNoButton();
-    });
+    noBtn.addEventListener('mouseenter', moveNoButton);
 }
 
-// Yes button functionality
-yesBtn.addEventListener("click", () => {
-    questionContainer.style.display = "none";
-    heartLoader.style.display = "inherit";
+yesBtn.addEventListener('click', () => {
+    questionContainer.style.display = 'none';
+    heartLoader.style.display = 'block';
 
     setTimeout(() => {
-        heartLoader.style.display = "none";
-        resultContainer.style.display = "inherit";
+        heartLoader.style.display = 'none';
+        resultContainer.style.display = 'block';
         gifResult.play();
     }, 3000);
 });

@@ -12,39 +12,18 @@
 </head>
 
 <body>
-    <!-- Background music: put happybirthday_piano.mp3 in the same folder -->
-    <audio id="bg-music" src="./audio/happybirthday_piano.mp3" preload="auto" loop playsinline></audio>
+    <!-- Welcome Dialog -->
+    <div class="welcome-dialog" id="welcomeDialog">
+        <div class="dialog-overlay"></div>
+        <div class="dialog-content">
+            <h2>Hế lô Xíu :></h2>
+            <p>Hôm nay là sinh nhật của ai ý nhở ???</p>
+            <button class="dialog-btn" id="agreeBtn">Em chả biết 🤷‍♀️</button>
+        </div>
+    </div>
 
-    <script>
-        // Autoplay with user interaction fallback
-        window.addEventListener('load', () => {
-            const audio = document.getElementById('bg-music');
-            audio.volume = 0.6;
-
-            // Thử phát ngay
-            const playPromise = audio.play();
-
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    console.log('Music is playing automatically!');
-                }).catch(() => {
-                    console.log('Autoplay blocked. Waiting for user interaction...');
-
-                    // Nếu bị chặn, phát khi người dùng tương tác bất kỳ
-                    const playOnInteraction = () => {
-                        audio.play();
-                        document.removeEventListener('click', playOnInteraction);
-                        document.removeEventListener('keydown', playOnInteraction);
-                        document.removeEventListener('touchstart', playOnInteraction);
-                    };
-
-                    document.addEventListener('click', playOnInteraction);
-                    document.addEventListener('keydown', playOnInteraction);
-                    document.addEventListener('touchstart', playOnInteraction);
-                });
-            }
-        });
-    </script>
+    <!-- Background music -->
+    <audio id="bg-music" src="./audio/glue_song.mp3" preload="auto" loop playsinline></audio>
 
     <div class="frame-1">
         <div class="cake">
@@ -214,7 +193,7 @@
 
         <div class="text">
             <h1>Chúc mừng sinh nhật tuổi 20!</h1>
-            <p class="name">Xíu thối</p>
+            <p class="name">❤️❤️❤️ Xíu thối ❤️❤️❤️</p>
         </div>
 
         <button class="scroll-down">
@@ -233,6 +212,7 @@
             </video>
 
             <h2 class="question">Xíu có yêu anh hem?</h2>
+            <span id="dontYouDare">Có dám ấn "Khum" không =))</span>
             <div class="button-container">
                 <button class="yes-btn btn js-yes-btn">Có</button>
                 <button class="no-btn btn js-no-btn">Khum</button>
@@ -245,7 +225,7 @@
                 webkit-playsinline x5-playsinline disablePictureInPicture
                 controlslist="nodownload nofullscreen noremoteplayback" oncontextmenu="return false;">
             </video>
-            <h2>Anh biết mà hì hì😍!</h2>
+            <h2 id="iKnowIt">Anh biết mà hì hì😍!</h2>
         </div>
 
         <div class="cssload-main">

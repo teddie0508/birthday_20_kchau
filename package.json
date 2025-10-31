@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "css": "postcss styles/style.css -o static/css/main.css --watch",
-    "dev": "concurrently \"npm run css\" \"vite\"",
+    "dev": "concurrently \"npm run css\" \"vite --host\"",
     "build": "postcss styles/style.css -o static/css/main.css && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
