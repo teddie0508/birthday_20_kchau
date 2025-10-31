@@ -289,11 +289,11 @@ html {
 }
 
 .scroll-hint {
-    @apply left-1/2;
     position: absolute;
     bottom: 90px;
-    margin-left: -50%;
-    /* Thay vì dùng transform translateX */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Thay vì dùng margin-left */
     color: white;
     font-family: 'Truculenta', sans-serif;
     font-size: 24px;
@@ -303,8 +303,8 @@ html {
     transition: opacity 0.5s;
     text-align: center;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    width: max-content;
-    /* Đảm bảo text không bị wrap */
+    white-space: nowrap;
+    /* Thêm để đảm bảo text không wrap */
 }
 
 /* Scroll button cho frame_middle */
@@ -336,15 +336,16 @@ html {
     pointer-events: none;
 }
 
+/* Sửa lại animation bounce để kết hợp translateX */
 @keyframes bounce {
 
     0%,
     100% {
-        transform: translate(-50%, 0);
+        transform: translateX(-50%) translateY(0);
     }
 
     50% {
-        transform: translate(-50%, -10px);
+        transform: translateX(-50%) translateY(-10px);
     }
 }
 
